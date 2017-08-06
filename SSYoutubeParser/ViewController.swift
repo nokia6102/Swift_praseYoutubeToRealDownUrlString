@@ -8,28 +8,35 @@
 
 import UIKit
 import AVFoundation
-import UIKit
+import Foundation
 //import SSYoutubeParser
 
 class ViewController: UIViewController {
+  @IBOutlet weak var txtVedioId: UITextField!
+  @IBOutlet weak var textviewRealUrl: UITextView!
     
     @IBOutlet weak var avPlayerView: AVPlayerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    self.setupVideo()
       
-       SSYoutubeParser.h264videosWithYoutubeID("yYIBb81ocvg") { (videoDictionary) -> Void in
-        let videoMediumURL = videoDictionary["medium"]
-        //let videoHD720URL = videoDictionary["hd720"]
-        
-        if let urlStr = videoMediumURL {
-            print (">url:\(urlStr)")
-          }
-        }
        }
+  
+  @IBAction func btnPraseIt(_ sender: UIButton)
+  {
+    SSYoutubeParser.h264videosWithYoutubeID(txtVedioId.text!) { (videoDictionary) -> Void in
+      let videoMediumURL = videoDictionary["hd720"]
+      //let videoHD720URL = videoDictionary["hd720"]
+      
+      if let urlStr = videoMediumURL {
+        print (">url:\(urlStr)")
+        self.textviewRealUrl.text = urlStr
+      }
+    }
   }
-    
+  
+  }
+
 //     as URL as URL
 //    func setupVideo() {
 //        SSYoutubeParser.h264videosWithYoutubeID("yYIBb81ocvg") { (videoDictionary) -> Void in
